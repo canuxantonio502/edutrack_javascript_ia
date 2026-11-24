@@ -319,6 +319,21 @@ ul {
     border-color: var(--accent-green);
 }
 
+.course-image {
+    border-radius: var(--border-radius-sm);
+    margin-bottom: 1rem;
+}
+
+.course-title {
+    margin-bottom: 0.5rem;
+}
+
+.course-description {
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
 /* =========================================
       8. LAYOUT: BENEFICIOS
       ========================================= */

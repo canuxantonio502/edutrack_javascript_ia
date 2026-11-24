@@ -149,7 +149,10 @@ body { font-family: 'Inter', sans-serif; background-color: var(--bg-light); colo
 .chart-section {
     background: var(--white); padding: 1.5rem; border-radius: var(--border-radius-md);
     box-shadow: var(--shadow-md); border: 1px solid var(--border-color);
+    margin-bottom: 2rem;
 }
+
+.modal-title { margin-bottom: 1.5rem; color: var(--primary-dark); }
 
 .btn-cancel {
     background: var(--border-color);
