@@ -269,6 +269,13 @@ ul {
     color: var(--white);
 }
 
+/* Placa clara para que los tonos azules del logo contrasten sobre el footer oscuro */
+.footer-logo-mark {
+    background-color: var(--white);
+    border-radius: var(--border-radius-sm);
+    padding: 3px;
+}
+
 /* =========================================
       6. LAYOUT: ESTADÍSTICAS
       ========================================= */

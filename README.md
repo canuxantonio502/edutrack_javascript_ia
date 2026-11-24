@@ -25,7 +25,7 @@ Es un proyecto **frontend estático** hecho con HTML, CSS y JavaScript puro, sin
 6. **Validación del dataset:** al cargar `JSON/ejemplo.json` se valida cada registro (id, email, progreso, fecha, plan, monto y estado). Los registros inválidos se descartan y se informan en la consola.
 7. **Catálogo de cursos** con búsqueda y filtro por categoría.
 8. **Diseño responsivo** con menú lateral tipo hamburguesa en móvil.
-9. **Identidad visual propia en SVG:** logo, favicon, portadas de cursos, ilustración del panel, iconos y avatares, todos hechos con la paleta del proyecto y sin depender de servicios externos. En las vistas privadas, el avatar muestra las iniciales del usuario.
+9. **Identidad visual propia:** logo y favicon de EduTrack, más portadas de cursos, ilustración del panel, iconos y avatares en SVG con la paleta del proyecto, sin depender de servicios externos. En las vistas privadas, el avatar muestra las iniciales del usuario.
 
 ## 📂 Estructura del Proyecto
 
@@ -37,7 +37,8 @@ Es un proyecto **frontend estático** hecho con HTML, CSS y JavaScript puro, sin
 │       ├── avatars/           # Avatares con iniciales de los testimonios
 │       ├── courses/           # Portadas ilustradas de los 6 cursos
 │       ├── hero-dashboard.svg # Ilustración del panel en la landing
-│       └── logo-mark.svg      # Icono de la marca (también se usa como favicon)
+│       ├── logo-edutrack.png  # Logo oficial (PNG transparente, 256 px)
+│       └── favicon-64.png     # Favicon generado a partir del logo
 │
 ├── css/
 │   ├── style.css              # Estilos de la vista de estudiantes (tarjetas, modal, gráfico)
