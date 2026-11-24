@@ -76,3 +76,50 @@
     padding: 0.6rem 1rem; border-radius: 6px; font-weight: 600; cursor: pointer; transition: 0.3s;
 }
 .btn-enroll:hover { background: #059669; }
+.catalog-category {
+    background: #E0E7FF;
+    color: #4338CA;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    width: fit-content;
+}
+
+.catalog-title {
+    font-size: 1.1rem;
+    color: var(--primary-dark);
+    margin: 0;
+}
+
+.catalog-desc {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    flex: 1;
+}
+
+.catalog-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.catalog-price {
+    font-weight: bold;
+    color: var(--primary-dark);
+    font-size: 1.1rem;
+}
+
+.catalog-empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: var(--text-muted);
+    margin-top: 2rem;
+}
+
+.catalog-header-container .greeting {
+    margin-bottom: 0.25rem;
+}
