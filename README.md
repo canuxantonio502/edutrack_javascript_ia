@@ -1,70 +1,99 @@
 # EduTrack - Dashboard de Gestión de Estudiantes 🇬🇹🚀
 
-> Plataforma administrativa web orientada al ecosistema EdTech en Guatemala, diseñada para gestionar, filtrar y visualizar el progreso de los estudiantes en tiempo real. 
+> Plataforma web de práctica orientada al ecosistema EdTech en Guatemala para gestionar, filtrar y visualizar el progreso de los estudiantes.
 
-Este proyecto fue desarrollado bajo una arquitectura limpia y modular sin el uso de frameworks pesados, priorizando el rendimiento, la accesibilidad y una experiencia de usuario (UX) moderna e intuitiva.
+Es un proyecto **frontend estático** hecho con HTML, CSS y JavaScript puro, sin frameworks. Los datos se guardan en el navegador con `localStorage`. No hay backend.
+
+> [!NOTE]
+> **Proyecto desarrollado con asistencia de IA.** Se construyó con la ayuda de **Gemini** y **Claude** como asistentes de programación. Más detalles en [Desarrollo asistido por IA](#-desarrollo-asistido-por-ia).
 
 ## 🛠️ Stack Tecnológico
 
-* **HTML5:** Estructura semántica optimizada para accesibilidad.
-* **CSS3 (Puro):** Metodología Mobile-First, CSS Grid, Flexbox y Custom Properties (Variables) para un mantenimiento escalable. No se utilizó Bootstrap ni Tailwind.
-* **JavaScript (Vanilla JS):** Lógica de negocio, manipulación del DOM, Template Literals y gestión del estado mediante el estándar ES6+.
-* **Chart.js:** Librería externa implementada mediante CDN para la visualización dinámica de datos.
-* **Web Storage API:** Uso de `localStorage` para persistencia de datos en el lado del cliente.
+* **HTML5:** estructura semántica (`header`, `nav`, `main`, `article`, `aside`).
+* **CSS3 puro:** Custom Properties, Flexbox, CSS Grid y media queries. Sin Bootstrap ni Tailwind.
+* **JavaScript (Vanilla, ES6+):** manipulación del DOM, Template Literals, `fetch`, `async/await`, módulos con el patrón IIFE y delegación de eventos.
+* **Chart.js v4 (CDN):** gráfico de barras de estudiantes por ciudad.
+* **Web Storage API:** `localStorage` para la cuenta, la sesión y los registros de estudiantes.
 
-## ✨ Características Principales
+## ✨ Características
 
-1. **CRUD Completo:** Capacidad de crear, leer, actualizar y eliminar registros de estudiantes desde una interfaz de usuario interactiva (Modales).
-2. **Filtrado en Tiempo Real:** Motor de búsqueda integrado para filtrar estudiantes simultáneamente por:
-   * Nombre o Correo Electrónico (Input de texto).
-   * Ciudad de residencia (Select dinámico).
-   * Plan de suscripción (Select estático).
-3. **Persistencia de Datos:** El estado de la aplicación sobrevive a la recarga del navegador gracias a la integración con `localStorage`. Si el almacenamiento está vacío, el sistema inyecta un dataset inicial de prueba automáticamente.
-4. **Visualización Analítica:** Gráfico de barras interactivo que reacciona a los filtros activos, mostrando la distribución geográfica de los estudiantes.
-5. **Diseño Responsivo:** Interfaz fluida que se adapta desde dispositivos móviles hasta pantallas Ultra-Wide, garantizando legibilidad y usabilidad.
+1. **Landing page** con registro e inicio de sesión mediante un modal.
+2. **Sesión simulada:** las vistas privadas (Dashboard, Catálogo y Estudiantes) redirigen al inicio si no hay sesión. Cerrar sesión termina la sesión, pero la cuenta registrada se conserva.
+3. **CRUD de estudiantes:** permite crear, editar y eliminar registros desde un modal.
+4. **Filtros combinados en tiempo real:** por nombre o correo, por ciudad (lista generada desde los datos) y por plan de suscripción.
+5. **Gráfico reactivo:** se actualiza con los filtros activos.
+6. **Validación del dataset:** al cargar `JSON/ejemplo.json` se valida cada registro (id, email, progreso, fecha, plan, monto y estado). Los registros inválidos se descartan y se informan en la consola.
+7. **Catálogo de cursos** con búsqueda y filtro por categoría.
+8. **Diseño responsivo** con menú lateral tipo hamburguesa en móvil.
 
 ## 📂 Estructura del Proyecto
 
 ```text
 /
 ├── css/
-│   ├── catalogo.css           # Estilos específicos para la vista del catálogo
-│   ├── dashboard_styles.css   # Layout y estilos del panel de control (sidebar, cards)
-│   ├── landing_styles.css     # Estilos de la página de inicio/hero section
-│   └── style.css              # Variables globales y estilos base compartidos
+│   ├── style.css              # Estilos de la vista de estudiantes (tarjetas, modal, gráfico)
+│   ├── dashboard_styles.css   # Layout del panel privado (sidebar, cards, tabla)
+│   ├── catalogo.css           # Estilos específicos del catálogo
+│   └── landing_styles.css     # Estilos de la landing page
 │
 ├── js/
-│   ├── app.js                 # Lógica principal, CRUD de estudiantes y Chart.js
-│   ├── catalogo.js            # Lógica para renderizar y filtrar el catálogo
-│   ├── dashboard.js           # Lógica específica de las métricas del dashboard
-│   ├── sidebar.js             # Módulo independiente para el menú hamburguesa
-│   └── validacion.js          # Funciones compartidas para validar formularios
+│   ├── utils.js               # Utilidades compartidas (escapeHTML)
+│   ├── session.js             # Cuenta, sesión, protección de vistas y cierre de sesión
+│   ├── sidebar.js             # Menú lateral responsivo y enlaces "en desarrollo"
+│   ├── validacion.js          # Carga y validación del dataset JSON
+│   ├── landing.js             # Modal de registro e inicio de sesión (index.html)
+│   ├── dashboard.js           # Saludo personalizado del panel (dashboard.html)
+│   ├── catalogo.js            # Render y filtros del catálogo (catalogo.html)
+│   └── estudiantes.js         # CRUD, filtros y gráfico (estudiantes.html)
 │
 ├── JSON/
-│   └── ejemplo.json           # Dataset inicial estructurado de estudiantes
+│   └── ejemplo.json           # Dataset inicial de 35 estudiantes ficticios
 │
-├── catalogo.html              # Vista de cursos disponibles
-├── dashboard.html             # Vista principal del estudiante (KPIs y progreso)
-├── estudiantes.html           # Vista administrativa (Gestión y tabla CRUD)
-└── index.html                 # Landing page principal de EduTrack
+├── index.html                 # Landing page
+├── dashboard.html             # Panel del estudiante (métricas e historial)
+├── catalogo.html              # Catálogo de cursos
+└── estudiantes.html           # Gestión de estudiantes (CRUD + gráfico)
 ```
+
+Cada página carga solo los scripts que necesita. El orden es: primero las utilidades compartidas (`utils.js`, `session.js`, `sidebar.js`) y después el script propio de la vista.
 
 ## 🚀 Instalación y uso local
 
-Al ser un proyecto estático sin dependencias de BackEnd, su ejecucción es inmediata:
+1. Clona el repositorio:
 
-1. Clona este repositorio:
+   ```bash
+   git clone https://github.com/canuxantonio502/edutrack_javascript_ia.git
+   ```
 
-```bash
-git clone https://github.com/canuxantonio502/TallerPr-ctico.git
-```
+2. Abre la carpeta en tu editor (por ejemplo, VS Code).
 
-2. Abre el directorio del proyecto en tu editor de código favorito (ej. VS Code).
+3. Sirve el proyecto con un servidor local, por ejemplo con la extensión **Live Server**, y abre `index.html`.
 
-3. Ejecuta el archivo index.html en tu navegador directamente o utiliza una extensión como Live Server para una experiencia de desarrollo óptima.
+> [!IMPORTANT]
+> Si abres `index.html` con doble clic (`file://`), el navegador bloquea el `fetch` de `JSON/ejemplo.json` y la vista de Estudiantes aparecerá vacía. Usa siempre un servidor local.
 
-## :feather: Autores
+**Flujo de prueba:** Regístrate → Dashboard → Estudiantes (CRUD y filtros) → Catálogo → Salir.
+Para reiniciar los datos, borra las claves `edutrack_*` del `localStorage` desde las herramientas de desarrollo del navegador.
 
-He aquí los responsables de que este proyecto se haya podido llevar a cabo:
+## ⚠️ Limitaciones conocidas
+
+* **No hay autenticación real:** no se usan contraseñas ni servidor. La sesión solo sirve para demostrar el flujo.
+* **Persistencia local:** los datos solo existen en el navegador donde se crearon.
+* **Datos de demostración:** las cifras de la landing, los testimonios, las métricas y el historial del Dashboard son ficticios y están escritos en el HTML.
+* **Secciones pendientes:** "Mis Rutas" está en desarrollo. Las inscripciones del catálogo y el botón de WhatsApp son simulaciones.
+* Las imágenes son marcadores de posición de [placehold.co](https://placehold.co).
+
+## 🤖 Desarrollo asistido por IA
+
+Este proyecto se realizó con la asistencia de **Gemini** y **Claude** como herramientas de apoyo para:
+
+* Generar la estructura inicial de las vistas, los estilos y la lógica del CRUD.
+* Crear el dataset de ejemplo y las reglas de validación.
+* Revisar el código, corregir errores (validación de planes, sesión y menú móvil) y reorganizar los scripts en módulos por responsabilidad.
+* Redactar esta documentación.
+
+El autor revisó, probó e integró los cambios. Las decisiones de diseño y el alcance del proyecto son suyos.
+
+## :feather: Autor
 
 * **Antonio Canux** - *Único colaborador* - [canuxantonio502](https://github.com/canuxantonio502)
