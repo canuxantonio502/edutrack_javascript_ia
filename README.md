@@ -1,13 +1,13 @@
-# EduTrack - Dashboard de Gestión de Estudiantes 🇬🇹🚀
+# EduTrack - Dashboard de Gestión de Estudiantes
 
 > Plataforma web de práctica orientada al ecosistema EdTech en Guatemala para gestionar, filtrar y visualizar el progreso de los estudiantes.
 
 Es un proyecto **frontend estático** hecho con HTML, CSS y JavaScript puro, sin frameworks. Los datos se guardan en el navegador con `localStorage`. No hay backend.
 
 > [!NOTE]
-> **Proyecto desarrollado con asistencia de IA.** Se construyó con la ayuda de **Gemini** y **Claude** como asistentes de programación. Más detalles en [Desarrollo asistido por IA](#-desarrollo-asistido-por-ia).
+> **Proyecto desarrollado con asistencia de IA.** Se construyó con la ayuda de **Gemini** y **Claude** como asistentes de programación. Más detalles en [Desarrollo asistido por IA](#desarrollo-asistido-por-ia).
 
-## 🛠️ Stack Tecnológico
+## Stack Tecnológico
 
 * **HTML5:** estructura semántica (`header`, `nav`, `main`, `article`, `aside`).
 * **CSS3 puro:** Custom Properties, Flexbox, CSS Grid y media queries. Sin Bootstrap ni Tailwind.
@@ -15,7 +15,7 @@ Es un proyecto **frontend estático** hecho con HTML, CSS y JavaScript puro, sin
 * **Chart.js v4 (CDN):** gráfico de barras de estudiantes por ciudad.
 * **Web Storage API:** `localStorage` para la cuenta, la sesión y los registros de estudiantes.
 
-## ✨ Características
+## Características
 
 1. **Landing page** con registro e inicio de sesión mediante un modal.
 2. **Sesión simulada:** las vistas privadas (Dashboard, Catálogo y Estudiantes) redirigen al inicio si no hay sesión. Cerrar sesión termina la sesión, pero la cuenta registrada se conserva.
@@ -27,7 +27,7 @@ Es un proyecto **frontend estático** hecho con HTML, CSS y JavaScript puro, sin
 8. **Diseño responsivo** con menú lateral tipo hamburguesa en móvil.
 9. **Identidad visual propia:** logo y favicon de EduTrack, más portadas de cursos, ilustración del panel, iconos y avatares en SVG con la paleta del proyecto, sin depender de servicios externos. En las vistas privadas, el avatar muestra las iniciales del usuario.
 
-## 📂 Estructura del Proyecto
+## Estructura del Proyecto
 
 ```text
 /
@@ -67,7 +67,7 @@ Es un proyecto **frontend estático** hecho con HTML, CSS y JavaScript puro, sin
 
 Cada página carga solo los scripts que necesita. El orden es: primero las utilidades compartidas (`utils.js`, `session.js`, `sidebar.js`) y después el script propio de la vista.
 
-## 🚀 Instalación y uso local
+## Instalación y uso local
 
 1. Clona el repositorio:
 
@@ -85,14 +85,14 @@ Cada página carga solo los scripts que necesita. El orden es: primero las utili
 **Flujo de prueba:** Regístrate → Dashboard → Estudiantes (CRUD y filtros) → Catálogo → Salir.
 Para reiniciar los datos, borra las claves `edutrack_*` del `localStorage` desde las herramientas de desarrollo del navegador.
 
-## ⚠️ Limitaciones conocidas
+## Limitaciones conocidas
 
 * **No hay autenticación real:** no se usan contraseñas ni servidor. La sesión solo sirve para demostrar el flujo.
 * **Persistencia local:** los datos solo existen en el navegador donde se crearon.
 * **Datos de demostración:** las cifras de la landing, los testimonios, las métricas y el historial del Dashboard son ficticios y están escritos en el HTML.
 * **Secciones pendientes:** "Mis Rutas" está en desarrollo. Las inscripciones del catálogo y el botón de WhatsApp son simulaciones.
 
-## 🤖 Desarrollo asistido por IA
+## Desarrollo asistido por IA
 
 Este proyecto se realizó con la asistencia de **Gemini** y **Claude** como herramientas de apoyo para:
 
@@ -103,6 +103,6 @@ Este proyecto se realizó con la asistencia de **Gemini** y **Claude** como herr
 
 El autor revisó, probó e integró los cambios. Las decisiones de diseño y el alcance del proyecto son suyos.
 
-## :feather: Autor
+## Autor
 
 * **Antonio Canux** - *Único colaborador* - [canuxantonio502](https://github.com/canuxantonio502)
