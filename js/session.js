@@ -42,9 +42,18 @@ const Session = (() => {
         return user;
     };
 
-    /** Muestra el nombre del usuario en el sidebar y conecta el botón "Salir". */
+    /** Iniciales para el avatar: "Ana López" → "AL", "Ana" → "A". */
+    const getInitials = (name) => name
+        .trim()
+        .split(/\s+/)
+        .slice(0, 2)
+        .map(word => word.charAt(0).toUpperCase())
+        .join('');
+
+    /** Muestra nombre e iniciales del usuario en el sidebar y conecta el botón "Salir". */
     const setupPrivateLayout = (user) => {
         document.querySelectorAll('.user-name').forEach(el => { el.textContent = user.name; });
+        document.querySelectorAll('.user-avatar').forEach(el => { el.textContent = getInitials(user.name) || 'U'; });
 
         document.querySelectorAll('.btn-logout').forEach(btn => {
             btn.addEventListener('click', () => {

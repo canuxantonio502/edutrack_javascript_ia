@@ -5,12 +5,12 @@
 
 // Base de datos simulada de cursos
 const COURSES = [
-    { id: 1, title: 'JavaScript Avanzado', category: 'Frontend', price: 'Q 250.00', img: 'https://placehold.co/400x200?text=JavaScript', desc: 'Domina asincronismo, closures y manipulación del DOM en profundidad.' },
-    { id: 2, title: 'React desde Cero', category: 'Frontend', price: 'Q 300.00', img: 'https://placehold.co/400x200?text=React', desc: 'Crea interfaces interactivas modernas utilizando Hooks y Context API.' },
-    { id: 3, title: 'Node.js Backend', category: 'Backend', price: 'Q 350.00', img: 'https://placehold.co/400x200?text=Node.js', desc: 'Construye APIs REST escalables, seguras y eficientes con Express.' },
-    { id: 4, title: 'Python Fundamental', category: 'Data', price: 'Q 280.00', img: 'https://placehold.co/400x200?text=Python', desc: 'Iníciate en la programación orientada a la ciencia de datos y automatización.' },
-    { id: 5, title: 'Bases de Datos SQL', category: 'Backend', price: 'Q 200.00', img: 'https://placehold.co/400x200?text=SQL', desc: 'Diseña, consulta y optimiza bases de datos relacionales corporativas.' },
-    { id: 6, title: 'Arquitectura CSS', category: 'Frontend', price: 'Q 150.00', img: 'https://placehold.co/400x200?text=CSS', desc: 'Domina Flexbox, CSS Grid y el diseño de interfaces altamente responsivas.' }
+    { id: 1, title: 'JavaScript Avanzado', category: 'Frontend', price: 'Q 250.00', img: 'assets/img/courses/javascript.svg', desc: 'Domina asincronismo, closures y manipulación del DOM en profundidad.' },
+    { id: 2, title: 'React desde Cero', category: 'Frontend', price: 'Q 300.00', img: 'assets/img/courses/react.svg', desc: 'Crea interfaces interactivas modernas utilizando Hooks y Context API.' },
+    { id: 3, title: 'Node.js Backend', category: 'Backend', price: 'Q 350.00', img: 'assets/img/courses/nodejs.svg', desc: 'Construye APIs REST escalables, seguras y eficientes con Express.' },
+    { id: 4, title: 'Python Fundamental', category: 'Data', price: 'Q 280.00', img: 'assets/img/courses/python.svg', desc: 'Iníciate en la programación orientada a la ciencia de datos y automatización.' },
+    { id: 5, title: 'Bases de Datos SQL', category: 'Backend', price: 'Q 200.00', img: 'assets/img/courses/sql.svg', desc: 'Diseña, consulta y optimiza bases de datos relacionales corporativas.' },
+    { id: 6, title: 'Arquitectura CSS', category: 'Frontend', price: 'Q 150.00', img: 'assets/img/courses/css.svg', desc: 'Domina Flexbox, CSS Grid y el diseño de interfaces altamente responsivas.' }
 ];
 
 const catalogLayoutTemplate = () => `
@@ -34,7 +34,7 @@ const catalogLayoutTemplate = () => `
 
 const courseCardTemplate = (course) => `
     <article class="catalog-card">
-        <img src="${course.img}" alt="${escapeHTML(course.title)}" class="catalog-image">
+        <img src="${course.img}" alt="Portada del curso ${escapeHTML(course.title)}" class="catalog-image" width="400" height="200" loading="lazy">
         <div class="catalog-content">
             <span class="catalog-category">${escapeHTML(course.category)}</span>
             <h3 class="catalog-title">${escapeHTML(course.title)}</h3>
