@@ -25,11 +25,20 @@ Es un proyecto **frontend estático** hecho con HTML, CSS y JavaScript puro, sin
 6. **Validación del dataset:** al cargar `JSON/ejemplo.json` se valida cada registro (id, email, progreso, fecha, plan, monto y estado). Los registros inválidos se descartan y se informan en la consola.
 7. **Catálogo de cursos** con búsqueda y filtro por categoría.
 8. **Diseño responsivo** con menú lateral tipo hamburguesa en móvil.
+9. **Identidad visual propia en SVG:** logo, favicon, portadas de cursos, ilustración del panel, iconos y avatares, todos hechos con la paleta del proyecto y sin depender de servicios externos. En las vistas privadas, el avatar muestra las iniciales del usuario.
 
 ## 📂 Estructura del Proyecto
 
 ```text
 /
+├── assets/
+│   ├── icons/                 # Iconos SVG (beneficios y botón de chat)
+│   └── img/
+│       ├── avatars/           # Avatares con iniciales de los testimonios
+│       ├── courses/           # Portadas ilustradas de los 6 cursos
+│       ├── hero-dashboard.svg # Ilustración del panel en la landing
+│       └── logo-mark.svg      # Icono de la marca (también se usa como favicon)
+│
 ├── css/
 │   ├── style.css              # Estilos de la vista de estudiantes (tarjetas, modal, gráfico)
 │   ├── dashboard_styles.css   # Layout del panel privado (sidebar, cards, tabla)
@@ -81,7 +90,6 @@ Para reiniciar los datos, borra las claves `edutrack_*` del `localStorage` desde
 * **Persistencia local:** los datos solo existen en el navegador donde se crearon.
 * **Datos de demostración:** las cifras de la landing, los testimonios, las métricas y el historial del Dashboard son ficticios y están escritos en el HTML.
 * **Secciones pendientes:** "Mis Rutas" está en desarrollo. Las inscripciones del catálogo y el botón de WhatsApp son simulaciones.
-* Las imágenes son marcadores de posición de [placehold.co](https://placehold.co).
 
 ## 🤖 Desarrollo asistido por IA
 

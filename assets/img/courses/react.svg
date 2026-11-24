@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" role="img" aria-label="Portada del curso de React">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0F172A"/>
+      <stop offset="1" stop-color="#1E293B"/>
+    </linearGradient>
+    <radialGradient id="glow">
+      <stop offset="0" stop-color="#10B981" stop-opacity=".45"/>
+      <stop offset="1" stop-color="#10B981" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.3" fill="#334155"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="400" fill="url(#bg)"/>
+  <rect width="800" height="400" fill="url(#dots)" opacity=".55"/>
+  <circle cx="660" cy="60" r="320" fill="url(#glow)"/>
+  <circle cx="90" cy="380" r="220" fill="url(#glow)" opacity=".5"/>
+  <path d="M400 107 C 400 142.5, 250 142.5, 250 178" fill="none" stroke="#475569" stroke-width="2" stroke-dasharray="5 6"/><path d="M400 107 C 400 142.5, 550 142.5, 550 178" fill="none" stroke="#34D399" stroke-width="2" />
+  <path d="M250 222 C 250 257.5, 235 257.5, 235 293" fill="none" stroke="#475569" stroke-width="2" stroke-dasharray="5 6"/>
+  <path d="M550 222 C 550 257.5, 398 257.5, 398 293" fill="none" stroke="#34D399" stroke-width="2" /><path d="M550 222 C 550 257.5, 554 257.5, 554 293" fill="none" stroke="#475569" stroke-width="2" stroke-dasharray="5 6"/><path d="M550 222 C 550 257.5, 710 257.5, 710 293" fill="none" stroke="#475569" stroke-width="2" stroke-dasharray="5 6"/>
+  <g>
+    <rect x="330" y="63" width="140" height="44" rx="12" fill="#10B981" stroke="#34D399" stroke-width="1.5"/>
+    <text x="400" y="90" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15" font-weight="600" fill="#0F172A">&lt;App /&gt;</text>
+  </g>
+  <g>
+    <rect x="180" y="178" width="140" height="44" rx="12" fill="#111A2E" stroke="#334155" stroke-width="1.5"/>
+    <text x="250" y="205" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15" font-weight="600" fill="#CBD5E1">&lt;Header /&gt;</text>
+  </g>
+  <g>
+    <rect x="480" y="178" width="140" height="44" rx="12" fill="#10B981" stroke="#34D399" stroke-width="1.5"/>
+    <text x="550" y="205" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15" font-weight="600" fill="#0F172A">&lt;Courses /&gt;</text>
+  </g>
+  <g>
+    <rect x="165" y="293" width="140" height="44" rx="12" fill="#111A2E" stroke="#334155" stroke-width="1.5"/>
+    <text x="235" y="320" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15" font-weight="600" fill="#CBD5E1">&lt;Nav /&gt;</text>
+  </g>
+  <g>
+    <rect x="328" y="293" width="140" height="44" rx="12" fill="#10B981" stroke="#34D399" stroke-width="1.5"/>
+    <text x="398" y="320" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15" font-weight="600" fill="#0F172A">&lt;Card /&gt;</text>
+  </g>
+  <g>
+    <rect x="484" y="293" width="140" height="44" rx="12" fill="#111A2E" stroke="#334155" stroke-width="1.5"/>
+    <text x="554" y="320" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15" font-weight="600" fill="#CBD5E1">&lt;Card /&gt;</text>
+  </g>
+  <g opacity=".6">
+  <g>
+    <rect x="640" y="293" width="140" height="44" rx="12" fill="#111A2E" stroke="#334155" stroke-width="1.5"/>
+    <text x="710" y="320" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15" font-weight="600" fill="#CBD5E1">&lt;Card /&gt;</text>
+  </g></g>
+  <circle cx="490" cy="142" r="6" fill="#34D399"/>
+  <text x="502" y="135" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" fill="#34D399">props</text>
+</svg>
