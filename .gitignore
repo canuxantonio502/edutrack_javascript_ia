@@ -1,0 +1,14 @@
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Editores
+.vscode/
+.idea/
+
+# Herramientas locales
+.claude/
+node_modules/
+
+# Archivo fuente del logo (se usan las versiones optimizadas en assets/img)
+assets/img/logo_edutrack.jfif

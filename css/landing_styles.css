@@ -246,8 +246,34 @@ ul {
 }
 
 .hero-image {
+    width: 100%;
     border-radius: var(--border-radius-md);
     box-shadow: var(--shadow-md);
+}
+
+/* Marca: icono SVG + nombre en tipografía del sitio */
+.brand-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.brand-name {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--primary-dark);
+}
+
+.main-footer .brand-name {
+    color: var(--white);
+}
+
+/* Placa clara para que los tonos azules del logo contrasten sobre el footer oscuro */
+.footer-logo-mark {
+    background-color: var(--white);
+    border-radius: var(--border-radius-sm);
+    padding: 3px;
 }
 
 /* =========================================
@@ -317,6 +343,22 @@ ul {
     box-shadow: var(--shadow-md);
     transform: translateY(-5px);
     border-color: var(--accent-green);
+}
+
+.course-image {
+    width: 100%;
+    border-radius: var(--border-radius-sm);
+    margin-bottom: 1rem;
+}
+
+.course-title {
+    margin-bottom: 0.5rem;
+}
+
+.course-description {
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
 }
 
 /* =========================================
@@ -430,7 +472,9 @@ ul {
 }
 
 .footer-logo {
-    margin: 0 auto var(--spacing-sm);
+    display: flex;
+    justify-content: center;
+    margin-bottom: var(--spacing-sm);
 }
 
 .footer-tagline {
@@ -482,14 +526,6 @@ ul {
 }
 
 /* Simulación de icono con pseudo-elemento (idealmente usar un SVG en HTML) */
-.whatsapp-float::before {
-    content: "W";
-    /* Placeholder visual del logo */
-    font-family: var(--font-heading);
-    font-weight: bold;
-    font-size: 24px;
-}
-
 .whatsapp-float:hover {
     transform: scale(1.1);
     box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.3);
@@ -534,7 +570,7 @@ ul {
     }
 
     .footer-logo {
-        margin: 0 0 var(--spacing-sm) 0;
+        justify-content: flex-start;
     }
 
     .footer-links-list {

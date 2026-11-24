@@ -1,96 +1,79 @@
-async function cargarJSON(url) {
-    try {
-        // 1. Hacemos la petición a la ruta del archivo
-        const respuesta = await fetch(url);
+/**
+ * Módulo de validación del dataset de estudiantes.
+ * Cada registro se valida de forma independiente: los válidos se usan
+ * y los inválidos se reportan en consola sin bloquear la aplicación.
+ */
+const PLANES_PERMITIDOS = ['básico', 'estándar', 'premium'];
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const FECHA_REGEX = /^\d{4}-\d{2}-\d{2}$/;
 
-        // 2. Verificamos que la petición haya sido exitosa (código HTTP 200-299)
-        if (!respuesta.ok) {
-            throw new Error(`No se pudo cargar el JSON. Estado HTTP: ${respuesta.status}`);
-        }
+/**
+ * Valida un registro y devuelve la lista de errores encontrados.
+ * @param {object} estudiante
+ * @returns {string[]} Errores (vacío si el registro es válido).
+ */
+function validarEstudiante(estudiante) {
+    const errores = [];
 
-        // 3. Transformamos la respuesta en un objeto JavaScript
-        const datos = await respuesta.json();
-
-        // 4. Procesamos o retornamos los datos
-        console.log("Datos cargados con éxito:", datos);
-        return datos;
-
-    } catch (error) {
-        // Capturamos y mostramos cualquier error (ej. archivo no encontrado, error de red)
-        console.error("Error al hacer fetch al JSON:", error);
+    if (!Number.isInteger(estudiante.id) || estudiante.id <= 0) {
+        errores.push(`'id' inválido (${estudiante.id}).`);
     }
+    if (typeof estudiante.nombre !== 'string' || estudiante.nombre.trim() === '') {
+        errores.push(`'nombre' está vacío o no es texto.`);
+    }
+    if (!EMAIL_REGEX.test(estudiante.email)) {
+        errores.push(`'email' con formato incorrecto (${estudiante.email}).`);
+    }
+    if (typeof estudiante.progreso !== 'number' || estudiante.progreso < 0 || estudiante.progreso > 100) {
+        errores.push(`'progreso' fuera de rango (${estudiante.progreso}).`);
+    }
+    if (!FECHA_REGEX.test(estudiante.fechaInscripcion) || isNaN(Date.parse(estudiante.fechaInscripcion))) {
+        errores.push(`'fechaInscripcion' inválida (${estudiante.fechaInscripcion}).`);
+    }
+    if (!PLANES_PERMITIDOS.includes(estudiante.plan)) {
+        errores.push(`'plan' no reconocido (${estudiante.plan}).`);
+    }
+    if (isNaN(Number(estudiante.montoUSD))) {
+        errores.push(`'montoUSD' no es numérico (${estudiante.montoUSD}).`);
+    }
+    if (typeof estudiante.activo !== 'boolean') {
+        errores.push(`'activo' no es un booleano.`);
+    }
+
+    return errores;
 }
 
+/**
+ * Descarga el JSON de estudiantes y separa los registros válidos de los inválidos.
+ * @param {string} jsonUrl Ruta del archivo JSON.
+ * @returns {Promise<{isValid: boolean, data: object[], errors: string[]}>}
+ */
 async function validarDatosEstudiantes(jsonUrl) {
     try {
-        // 1. Cargar el JSON
         const response = await fetch(jsonUrl);
-        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-        const data = await response.json();
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const registros = await response.json();
 
-        let isValid = true;
+        const data = [];
         const errors = [];
 
-        // 2. Iterar sobre cada registro para validarlo
-        data.forEach((estudiante, index) => {
-            const rowInfo = `Fila ${index + 1} (ID: ${estudiante.id})`;
-
-            // Validar ID: Debe ser un número entero positivo
-            if (typeof estudiante.id !== 'number' || estudiante.id <= 0) {
-                errors.push(`${rowInfo} - 'id' inválido.`);
-            }
-
-            // Validar Nombre: Debe ser texto y no estar vacío
-            if (typeof estudiante.nombre !== 'string' || estudiante.nombre.trim() === '') {
-                errors.push(`${rowInfo} - 'nombre' está vacío o no es texto.`);
-            }
-
-            // Validar Email: Uso de expresión regular para formato correcto
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(estudiante.email)) {
-                errors.push(`${rowInfo} - 'email' tiene un formato incorrecto (${estudiante.email}).`);
-            }
-
-            // Validar Progreso: Número entre 0 y 100
-            if (typeof estudiante.progreso !== 'number' || estudiante.progreso < 0 || estudiante.progreso > 100) {
-                errors.push(`${rowInfo} - 'progreso' fuera de rango (${estudiante.progreso}).`);
-            }
-
-            // Validar Fecha de Inscripción: Formato YYYY-MM-DD y que sea una fecha real
-            const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
-            // Date.parse devuelve NaN si la fecha es inválida (ej. mes 22)
-            if (!dateRegex.test(estudiante.fechaInscripcion) || isNaN(Date.parse(estudiante.fechaInscripcion))) {
-                errors.push(`${rowInfo} - 'fechaInscripcion' inválida (${estudiante.fechaInscripcion}).`);
-            }
-
-            // Validar Plan: Solo permitir valores específicos
-            const planesPermitidos = ['basico', 'estàndar', 'premium'];
-            if (!planesPermitidos.includes(estudiante.plan)) {
-                errors.push(`${rowInfo} - 'plan' no reconocido (${estudiante.plan}).`);
-            }
-
-            // Validar Monto USD: Aunque está como string ("99"), debe poder convertirse a número
-            if (isNaN(Number(estudiante.montoUSD))) {
-                errors.push(`${rowInfo} - 'montoUSD' no es numérico (${estudiante.montoUSD}).`);
-            }
-
-            // Validar Activo: Debe ser estrictamente un booleano (true o false)
-            if (typeof estudiante.activo !== 'boolean') {
-                errors.push(`${rowInfo} - 'activo' no es un booleano.`);
+        registros.forEach((estudiante, index) => {
+            const erroresRegistro = validarEstudiante(estudiante);
+            if (erroresRegistro.length === 0) {
+                data.push(estudiante);
+            } else {
+                const fila = `Fila ${index + 1} (ID: ${estudiante.id})`;
+                erroresRegistro.forEach(error => errors.push(`${fila} - ${error}`));
             }
         });
 
-        // 3. Resultados de la validación
         if (errors.length > 0) {
-            console.error("❌ Se encontraron los siguientes errores en el JSON:", errors);
-            isValid = false;
-        } else {
-            console.log("✅ Todos los datos del JSON pasaron la validación correctamente.");
+            console.warn(`Se descartaron registros inválidos del JSON:`, errors);
         }
 
-        return { isValid, data, errors };
-
+        return { isValid: errors.length === 0, data, errors };
     } catch (error) {
-        console.error("Error al obtener o procesar el JSON:", error);
+        console.error('Error al obtener o procesar el JSON:', error);
+        return { isValid: false, data: [], errors: [error.message] };
     }
 }
