@@ -251,6 +251,26 @@ function getChartData(list) {
     };
 }
 
+/** Colores de texto y cuadrícula del gráfico según el tema activo. */
+function getChartColors() {
+    const isDark = document.documentElement.dataset.theme === 'dark';
+    return {
+        text: isDark ? '#CBD5E1' : '#334155',
+        muted: isDark ? '#94A3B8' : '#64748B',
+        grid: isDark ? 'rgba(148, 163, 184, 0.15)' : 'rgba(15, 23, 42, 0.08)'
+    };
+}
+
+function applyChartTheme() {
+    const { text, muted, grid } = getChartColors();
+    const { options } = chartInstance;
+    options.plugins.title.color = text;
+    ['x', 'y'].forEach(axis => {
+        options.scales[axis].ticks.color = muted;
+        options.scales[axis].grid.color = grid;
+    });
+}
+
 function initChart() {
     const ctx = document.getElementById('cityChart').getContext('2d');
     chartInstance = new Chart(ctx, {
@@ -262,8 +282,19 @@ function initChart() {
                 legend: { display: false },
                 title: { display: true, text: 'Distribución de Estudiantes por Ciudad', font: { size: 16 } }
             },
-            scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } }
+            scales: {
+                x: { ticks: {}, grid: {} },
+                y: { beginAtZero: true, ticks: { stepSize: 1 }, grid: {} }
+            }
         }
+    });
+    applyChartTheme();
+    chartInstance.update();
+
+    // Repintar el gráfico cuando cambie el tema (evento emitido por theme.js)
+    document.addEventListener('edutrack:themechange', () => {
+        applyChartTheme();
+        chartInstance.update();
     });
 }
 

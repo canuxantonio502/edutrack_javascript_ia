@@ -26,6 +26,7 @@ Es un proyecto **frontend estático** hecho con HTML, CSS y JavaScript puro, sin
 7. **Catálogo de cursos** con búsqueda y filtro por categoría.
 8. **Diseño responsivo** con menú lateral tipo hamburguesa en móvil.
 9. **Identidad visual propia:** logo y favicon de EduTrack, más portadas de cursos, ilustración del panel, iconos y avatares en SVG con la paleta del proyecto, sin depender de servicios externos. En las vistas privadas, el avatar muestra las iniciales del usuario.
+10. **Tema claro y oscuro:** botón en la cabecera de la landing y en el sidebar. La primera vez sigue la preferencia del sistema; después recuerda la elección del usuario en todas las páginas. El gráfico también cambia de colores.
 
 ## Estructura del Proyecto
 
@@ -44,9 +45,11 @@ Es un proyecto **frontend estático** hecho con HTML, CSS y JavaScript puro, sin
 │   ├── style.css              # Estilos de la vista de estudiantes (tarjetas, modal, gráfico)
 │   ├── dashboard_styles.css   # Layout del panel privado (sidebar, cards, tabla)
 │   ├── catalogo.css           # Estilos específicos del catálogo
+│   ├── theme.css              # Botón de tema y paleta oscura (se carga al final)
 │   └── landing_styles.css     # Estilos de la landing page
 │
 ├── js/
+│   ├── theme.js               # Tema claro/oscuro (se carga en el <head> para evitar destellos)
 │   ├── utils.js               # Utilidades compartidas (escapeHTML)
 │   ├── session.js             # Cuenta, sesión, protección de vistas y cierre de sesión
 │   ├── sidebar.js             # Menú lateral responsivo y enlaces "en desarrollo"
